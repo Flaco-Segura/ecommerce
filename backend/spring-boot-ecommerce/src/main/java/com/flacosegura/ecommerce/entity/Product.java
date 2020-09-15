@@ -10,9 +10,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.Data;
 
-@Entity
-@Table(name="product")
 @Data
+@Entity
+@Table(name = "product")
 public class Product {
 
     @Id

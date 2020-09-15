@@ -9,8 +9,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "product_category")
-@Getter
-@Setter
+@Getter @Setter
 public class ProductCategory {
 
     @Id

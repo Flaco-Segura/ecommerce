@@ -1,0 +1,18 @@
+<div class="main-content">
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+            <div class="columns is-multiline">
+                <div *ngFor="let product of products" class="column is-one-quarter">
+                    <div class="product-box">
+                        <img src="{{ product.imageUrl }}" class="img-responsive">
+                        <h1 class="truncate">{{ product.name }}</h1>
+                        <div class="price">
+                            {{ product.unitPrice | currency: "EUR" }}
+                        </div>
+                        <a href="#" class="primary-btn">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

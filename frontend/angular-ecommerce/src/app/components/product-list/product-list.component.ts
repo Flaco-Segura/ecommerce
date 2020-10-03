@@ -11,10 +11,14 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductListComponent implements OnInit {
 
-  products: Product[];
-  currentCategoryId: number;
+  products: Product[] = [];
+  currentCategoryId: number = 1;
   currentTitle: string;
   searchMode: boolean;
+  pageNumber: number = 1;
+  pageSize: number = 8;
+  totalElements:number = 0;
+  previousCategoryId: number = 1;
   
   constructor(private productService: ProductService,
               private route: ActivatedRoute) { }
@@ -56,11 +60,25 @@ export class ProductListComponent implements OnInit {
       this.currentCategoryId = 1;
       this.currentTitle = 'Category: Books';
     }
+
+    if(this.previousCategoryId != this.currentCategoryId) {
+      this.pageNumber = 1;
+    }
+
+    this.previousCategoryId = this.currentCategoryId;
     
-    this.productService.getProductList(this.currentCategoryId).subscribe(
-      data => {
-        this.products = data;
-      }
-    )
+    this.productService.getProductListPaginate(
+        this.currentCategoryId,
+        this.pageNumber,
+        this.pageSize).subscribe(this.processResult());
+  }
+
+  processResult() {
+    return data => {
+      this.products = data._embedded.products;
+      this.pageNumber = data.page.number + 1;
+      this.pageSize = data.page.size;
+      this.totalElements = data.page.totalElements;
+    };
   }
 }

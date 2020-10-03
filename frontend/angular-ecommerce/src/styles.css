@@ -731,6 +731,10 @@ table.table.table-bordered th{
     text-overflow: ellipsis;
 }
 
+.detail-img{
+    width: 30%;
+}
+
 /**/
 
 /* 

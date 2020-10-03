@@ -8,8 +8,12 @@
             <div class="columns is-multiline">
                 <div *ngFor="let product of products" class="column is-one-quarter">
                     <div class="product-box">
-                        <img src="{{ product.imageUrl }}" class="img-responsive">
-                        <h1 class="truncate">{{ product.name }}</h1>
+                        <a routerLink="/products/{{product.id}}">
+                            <img src="{{ product.imageUrl }}" class="img-responsive">
+                        </a>
+                        <a routerLink="/products/{{product.id}}">
+                            <h1 class="truncate">{{ product.name }}</h1>
+                        </a>
                         <div class="price">
                             {{ product.unitPrice | currency: "EUR" }}
                         </div>

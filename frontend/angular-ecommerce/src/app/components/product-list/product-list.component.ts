@@ -1,4 +1,3 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/common/product';
@@ -13,12 +12,12 @@ export class ProductListComponent implements OnInit {
 
   products: Product[] = [];
   currentCategoryId: number = 1;
+  previousCategoryId: number = 1;
   currentTitle: string;
   searchMode: boolean;
   pageNumber: number = 1;
   pageSize: number = 8;
   totalElements:number = 0;
-  previousCategoryId: number = 1;
   
   constructor(private productService: ProductService,
               private route: ActivatedRoute) { }
@@ -69,8 +68,9 @@ export class ProductListComponent implements OnInit {
     
     this.productService.getProductListPaginate(
         this.currentCategoryId,
-        this.pageNumber,
-        this.pageSize).subscribe(this.processResult());
+        this.pageNumber - 1,
+        this.pageSize,
+        ).subscribe(this.processResult());
   }
 
   processResult() {

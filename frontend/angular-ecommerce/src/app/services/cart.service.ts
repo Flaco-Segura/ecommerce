@@ -47,18 +47,5 @@ export class CartService {
 
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue);
-
-    this.logCartData(totalPriceValue, totalQuantityValue);
-  }
-
-  logCartData(totalPriceValue: number, totalQuantityValue: number) {
-    console.log('Contents of the cart');
-    for(let cartItem of this.cartItems) {
-      const subTotalPrice = cartItem.quantity * cartItem.unitPrice;
-      console.log(`name: ${cartItem.name}, quantity: ${cartItem.quantity}, unitPrice: ${cartItem.unitPrice}, subTotalPrice=${subTotalPrice}`);
-    }
-
-    console.log(`totalPrice: ${totalPriceValue.toFixed(2)}, totalQuantity: ${totalQuantityValue}`);
-    console.log('=== 000 ===');
   }
 }

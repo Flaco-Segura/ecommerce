@@ -36,7 +36,11 @@
                                         </button>
                                     </div>
 
-                                    <div class="col-8"></div>
+                                    <div class="col-8">
+                                        <button (click)="remove(cartItem)" class="btn btn-danger btn-sm ml-4">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
     
@@ -49,6 +53,7 @@
                             <p>Total Quantity: {{ totalQuantity }}</p>
                             <p>Shipping: FREE</p>
                             <p>Total Price: {{ totalPrice | currency: 'EUR' }}</p>
+                            <a routerLink="/checkout" class="btn btn-primary">Checkout</a>
                         </td>
                     </tr>
                 </table>

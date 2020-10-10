@@ -53,9 +53,7 @@ export class CheckoutComponent implements OnInit {
 
     this.orderDetails();
 
-    const startMonth: number = new Date().getMonth() + 1;
-
-    this.shopFormService.getCreditCardMonths(startMonth).subscribe(
+    this.shopFormService.getCreditCardMonths().subscribe(
       data => {
         this.creditCardMonths = data;
       }

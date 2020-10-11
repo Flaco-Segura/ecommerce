@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Country } from '../common/country';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,12 @@ export class ShopFormService {
   private statesUrl = 'http://localhost:8080/api/states';
 
   constructor(private httpClient: HttpClient) { }
+
+  getCountries(): Observable<Country[]> {
+    return this.httpClient.get<GetResponseCountries>(this.countriesUrl).pipe(
+      map(response => response._embedded.countries)
+    )
+  }
 
   getCreditCardMonths(startMonth: number): Observable<number[]> {
     let data: number[] = [];
@@ -33,5 +41,11 @@ export class ShopFormService {
     } 
 
     return of(data);
+  }
+}
+
+interface GetResponseCountries {
+  _embedded: {
+    countries: Country[];
   }
 }
